@@ -1,0 +1,27 @@
+{
+  "name": "Scroll Driver: POC",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Scroll Driver on chrome proof of concept",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "scripts": ["src/bg/background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "page action demo",
+    "default_popup": "src/page_action/page_action.html"
+  },
+  "permissions": ["storage", "activeTab", "declarativeContent", "https://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["src/inject/inject.js"]
+    }
+  ]
+}
