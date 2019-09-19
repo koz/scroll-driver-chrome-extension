@@ -27,6 +27,7 @@
   "web_accessible_resources": [
     "src/inject/layout.html",
     "src/inject/style.css",
-    "src/inject/animate.js"
+    "src/inject/animate.js",
+    "src/inject/controls.js"
   ]
 }

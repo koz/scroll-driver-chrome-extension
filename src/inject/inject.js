@@ -33,6 +33,17 @@ chrome.extension.sendMessage({}, function(response) {
             .createRange()
             .createContextualFragment(
               `<script src="${chrome.runtime.getURL(
+                "src/inject/controls.js"
+              )}" type="text/javascript" />`
+            )
+        );
+      document
+        .getElementsByTagName("head")[0]
+        .append(
+          document
+            .createRange()
+            .createContextualFragment(
+              `<script src="${chrome.runtime.getURL(
                 "src/inject/animate.js"
               )}" type="text/javascript" />`
             )
