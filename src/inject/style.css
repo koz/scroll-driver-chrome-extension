@@ -1,0 +1,160 @@
+.sd-hover-item {
+  border: 1px dotted red !important;
+}
+
+.sd-animation {
+  transition: all 300ms ease !important;
+}
+
+/* LAYOUT STYLE */
+.bottom-bar {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  height: 90px;
+  width: 100vw;
+  font-family: "Helvetica";
+  background-color: #f2f8fd;
+  left: 0;
+}
+
+.controls {
+  padding: 20px;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+}
+
+.input:not(:first-child) {
+  margin-top: 8px;
+}
+
+.input-text {
+  border: none;
+  border-radius: 3px;
+}
+
+.input > label {
+  margin-right: 8px;
+}
+
+.scroller {
+  position: relative;
+  overflow-x: scroll;
+}
+
+.scroll-bar-container {
+  overflow-x: scroll;
+  height: 90px;
+}
+
+.scroll-bar {
+  height: 100%;
+}
+
+.scroll-bar-tooltip {
+  position: absolute;
+  bottom: 70px;
+  padding: 3px;
+  z-index: 10;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 5px;
+  margin-left: -12px;
+}
+.scroll-bar-tooltip::before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: -6px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  left: calc(50% - 8px);
+}
+
+.tooltip-hover {
+  pointer-events: none;
+  background-color: #242240;
+  color: white;
+}
+.tooltip-hover::before {
+  border-top: 8px solid #242240;
+}
+.tooltip-hover::after {
+  background-color: #242240;
+}
+
+.tooltip-start {
+  cursor: pointer;
+  background-color: #64c7ff;
+  color: #1d1d1d;
+}
+.tooltip-start::before {
+  border-top: 8px solid #64c7ff;
+}
+.tooltip-start::after {
+  background-color: #64c7ff;
+}
+
+.tooltip-end {
+  cursor: pointer;
+  background-color: #7ab1ff;
+  color: #1d1d1d;
+}
+.tooltip-end::before {
+  border-top: 8px solid #7ab1ff;
+}
+.tooltip-end::after {
+  background-color: #7ab1ff;
+}
+
+.scroll-bar-tooltip::after {
+  content: "";
+  width: 1px;
+  position: absolute;
+  height: 92px;
+  left: 50%;
+  bottom: -90px;
+}
+
+.tooltip-hide {
+  display: none;
+}
+
+.rule-section {
+  width: 100px;
+  height: 100%;
+  background-color: #d7e1e9;
+}
+
+.rule-mark {
+  width: 1px;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+}
+
+.rule-mark-small {
+  height: 5px;
+}
+
+.rule-mark-big {
+  height: 15px;
+}
+
+.rule-mark-label {
+  margin-left: 4px;
+  color: #1d1d1d;
+  font-size: 8px;
+}
+
+.ruler {
+  height: 20px;
+  position: relative;
+  display: inline-flex;
+}

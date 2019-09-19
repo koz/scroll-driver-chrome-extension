@@ -1,0 +1,173 @@
+<div class="bottom-bar">
+  <div id="controls" class="controls">
+    <div class="input">
+      <label class="label">Property: </label>
+      <select id="property-select"></select>
+    </div>
+    <div class="input">
+      <label class="label">Value: </label>
+      <input id="property-value-input" class="input-text" type="text"></input>
+    </div>
+  </div>
+  <div class="scroller">
+    <div id="scroll-bar-tooltip" class="scroll-bar-tooltip tooltip-hover"></div>
+    <div
+      id="scroll-bar-tooltip-start"
+      class="scroll-bar-tooltip tooltip-start tooltip-hide"
+    ></div>
+    <div
+      id="scroll-bar-tooltip-end"
+      class="scroll-bar-tooltip tooltip-end tooltip-hide"
+    ></div>
+    <div id="scroll-bar" class="scroll-bar-container">
+      <div class="scroll-bar">
+        <div id="ruler" class="ruler">
+          <!-- <div class="rule-section">
+            <div class="rule-mark rule-mark-small" style="left: 0"></div>
+            <div class="rule-mark rule-mark-small" style="left: 20px"></div>
+            <div class="rule-mark rule-mark-small" style="left: 40px"></div>
+            <div class="rule-mark rule-mark-small" style="left: 60px"></div>
+            <div class="rule-mark rule-mark-small" style="left: 80px"></div>
+            <div class="rule-mark rule-mark-big" style="left: 100px">
+              <span class="rule-mark-label">100</span>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const scrollBarElement = document.getElementById("scroll-bar")
+  const tooltipElement = document.getElementById("scroll-bar-tooltip")
+  const markerStartElement = document.getElementById(
+    "scroll-bar-tooltip-start"
+  )
+  const markerEndElement = document.getElementById("scroll-bar-tooltip-end")
+  const selectEl = document.getElementById('property-select')
+
+  const markers = []
+  const propertiesAvailable = [
+    {
+      value: 'background',
+      label: 'Background'
+    },
+    {
+      value: 'border',
+      label: 'Border'
+    },
+    {
+      value: 'color',
+      label: 'Color'
+    },
+    {
+      value: 'height',
+      label: 'Height'
+    },
+    {
+      value: 'margin',
+      label: 'Margin'
+    },
+    {
+      value: 'opacity',
+      label: 'Opacity'
+    },
+    {
+      value: 'padding',
+      label: 'Padding'
+    },
+    {
+      value: 'scale',
+      label: 'Scale'
+    },
+    {
+      value: 'transform',
+      label: 'Transform'
+    },
+    {
+      value: 'translate',
+      label: 'Translate'
+    },
+    {
+      value: 'width',
+      label: 'Width'
+    },
+  ]
+  let propertySelected
+
+  // Create properties select options
+  propertiesAvailable.forEach(item => {
+    const optionEl = document.createElement('option')
+    optionEl.value = item.value
+    optionEl.innerText = item.label
+    selectEl.appendChild(optionEl)
+  })
+
+  // Create ruler on HTML
+  Array(30).fill(null).forEach((_, sectionIndex) => {
+    const ruleSectionEl = document.createElement('div')
+    ruleSectionEl.classList.add('rule-section')
+    Array(6).fill(null).forEach((_, i) => {
+      const el = document.createElement('div')
+      if (i === 5) {
+        el.classList.add('rule-mark', 'rule-mark-big')
+        const label = document.createElement('span')
+        label.classList.add('rule-mark-label')
+        label.innerText = 100 * sectionIndex + 100
+        el.appendChild(label)
+      } else {
+        el.classList.add('rule-mark', 'rule-mark-small')
+      }
+      el.style.setProperty('left', `${(20 * i) + (100 * sectionIndex)}px`)
+      ruleSectionEl.appendChild(el)
+    })
+    document.getElementById('ruler').appendChild(ruleSectionEl)
+  })
+
+  const setMarker = ({ index, mousePosition, element }) => {
+    markers[index] = mousePosition + scrollBarElement.scrollLeft
+    element.style.setProperty("left", `${mousePosition}px`)
+    element.innerText = markers[index]
+    element.classList.remove("tooltip-hide")
+  }
+
+  scrollBarElement.addEventListener("click", e => {
+    const index =
+      markers.length < 2
+        ? markers.length
+        : markers.findIndex(item => item === null)
+    const element = index === 0 ? markerStartElement : markerEndElement
+    const mousePosition = e.layerX
+
+    setMarker({
+      index,
+      mousePosition,
+      element
+    })
+  })
+
+  markerStartElement.addEventListener("click", e => {
+    markers[0] = null
+    markerStartElement.classList.add("tooltip-hide")
+    markerStartElement.innerText = null
+  })
+
+  markerEndElement.addEventListener("click", e => {
+    markers[1] = null
+    markerEndElement.classList.add("tooltip-hide")
+    markerEndElement.innerText = null
+  })
+
+  scrollBarElement.addEventListener("mousemove", e => {
+    tooltipElement.style.setProperty("left", `${e.layerX}px`)
+    tooltipElement.innerText = e.layerX + scrollBarElement.scrollLeft
+  })
+
+  scrollBarElement.addEventListener("mouseleave", e => {
+    tooltipElement.classList.add("tooltip-hide")
+  })
+
+  scrollBarElement.addEventListener("mouseenter", e => {
+    tooltipElement.classList.remove("tooltip-hide")
+  })
+</script>
