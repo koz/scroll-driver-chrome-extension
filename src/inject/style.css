@@ -2,16 +2,12 @@
   border: 1px dotted red !important;
 }
 
-.sd-animation {
-  transition: all 300ms ease !important;
-}
-
 /* LAYOUT STYLE */
 .bottom-bar {
   position: fixed;
   display: flex;
   bottom: 0;
-  height: 150px;
+  height: 180px;
   width: 100vw;
   font-family: "Helvetica";
   background-color: #f2f8fd;
@@ -60,7 +56,7 @@
 
 .scroll-bar-tooltip {
   position: absolute;
-  bottom: 130px;
+  bottom: 160px;
   padding: 3px;
   z-index: 10;
   font-size: 12px;
@@ -119,9 +115,9 @@
   content: "";
   width: 1px;
   position: absolute;
-  height: 130px;
+  height: 160px;
   left: 50%;
-  bottom: -130px;
+  bottom: -160px;
 }
 
 .tooltip-hide {
