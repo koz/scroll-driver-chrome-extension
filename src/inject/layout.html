@@ -2,11 +2,23 @@
   <div id="controls" class="controls">
     <div class="input">
       <label class="label">Property: </label>
-      <select id="property-select"></select>
+      <select id="property-select" class="control-input"></select>
     </div>
     <div class="input">
-      <label class="label">Value: </label>
-      <input id="property-value-input" class="input-text" type="text"></input>
+      <label class="label">Initial value: </label>
+      <input id="property-initial-value-input" class="input-text control-input" type="text"></input>
+    </div>
+    <div class="input">
+      <label class="label">Final value: </label>
+      <input id="property-final-value-input" class="input-text control-input" type="text"></input>
+    </div>
+    <div class="input">
+      <label class="label">Duration (ms): </label>
+      <input id="duration-input" class="input-text control-input" type="text" value="300"></input>
+    </div>
+    <div class="input">
+      <label class="label">Timing: </label>
+      <input id="timing-input" class="input-text control-input" type="text" value="ease"></input>
     </div>
   </div>
   <div class="scroller">
@@ -46,51 +58,62 @@
   const markerEndElement = document.getElementById("scroll-bar-tooltip-end")
   const selectEl = document.getElementById('property-select')
 
-  const markers = []
+  markers = []
   const propertiesAvailable = [
     {
       value: 'background',
-      label: 'Background'
+      label: 'Background',
+      disabled: true
     },
     {
       value: 'border',
-      label: 'Border'
+      label: 'Border',
+      disabled: true
     },
     {
       value: 'color',
-      label: 'Color'
+      label: 'Color',
+      disabled: true
     },
     {
       value: 'height',
-      label: 'Height'
+      label: 'Height',
+      disabled: true
     },
     {
       value: 'margin',
-      label: 'Margin'
+      label: 'Margin',
+      disabled: true
     },
     {
       value: 'opacity',
-      label: 'Opacity'
+      label: 'Opacity',
+      disabled: false
     },
     {
       value: 'padding',
-      label: 'Padding'
+      label: 'Padding',
+      disabled: true
     },
     {
       value: 'scale',
-      label: 'Scale'
+      label: 'Scale',
+      disabled: true
     },
     {
       value: 'transform',
-      label: 'Transform'
+      label: 'Transform',
+      disabled: false
     },
     {
       value: 'translate',
-      label: 'Translate'
+      label: 'Translate',
+      disabled: true
     },
     {
       value: 'width',
-      label: 'Width'
+      label: 'Width',
+      disabled: true
     },
   ]
   let propertySelected
@@ -100,6 +123,7 @@
     const optionEl = document.createElement('option')
     optionEl.value = item.value
     optionEl.innerText = item.label
+    optionEl.disabled = item.disabled
     selectEl.appendChild(optionEl)
   })
 
