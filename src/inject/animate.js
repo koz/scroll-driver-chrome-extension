@@ -4,17 +4,30 @@ const controlElements = document.querySelectorAll(".control-input");
 let selectedElOriginalStyle = {};
 let selectedEl;
 
+const transformProperties = ["translateX", "translateY"];
+
+const getSelectedProperty = () => {
+  const property = document.getElementById("property-select").value;
+  return transformProperties.includes(property) ? `transform` : property;
+};
+
+const getPropertyValue = value => {
+  const property = document.getElementById("property-select").value;
+  const unit = document.getElementById("unit-select").value;
+  return transformProperties.includes(property)
+    ? `${property}(${value}${unit})`
+    : value;
+};
+
 const updatePropertyValue = () => {
   if (!selectedEl) {
     return;
   }
-  const propertySelectEl = document.getElementById("property-select");
   const durationInputEl = document.getElementById("duration-input");
   const timingInputEl = document.getElementById("timing-input");
-  const selectedProperty = propertySelectEl.value;
   selectedEl.style.setProperty(
     "transition",
-    `${selectedProperty} ${durationInputEl.value}ms ${timingInputEl.value}`
+    `${getSelectedProperty()} ${durationInputEl.value}ms ${timingInputEl.value}`
   );
 };
 
@@ -48,7 +61,7 @@ document.addEventListener("scroll", event => {
   if (!selectedEl) {
     return;
   }
-  const propertySelected = document.getElementById("property-select").value;
+  const propertySelected = getSelectedProperty();
   const propertyInitialValue = Number(
     document.getElementById("property-initial-value-input").value
   );
@@ -61,22 +74,31 @@ document.addEventListener("scroll", event => {
   const scrollFinalValue = Number(
     document.getElementById("scroll-bar-tooltip-end").innerText
   );
-
   if (window.scrollY < scrollInitialValue) {
-    selectedEl.style.setProperty(propertySelected, propertyInitialValue);
+    selectedEl.style.setProperty(
+      propertySelected,
+      getPropertyValue(propertyInitialValue)
+    );
   } else if (window.scrollY > scrollFinalValue) {
-    selectedEl.style.setProperty(propertySelected, propertyFinalValue);
+    selectedEl.style.setProperty(
+      propertySelected,
+      getPropertyValue(propertyFinalValue)
+    );
   } else {
     if (!scrollInitialValue || !scrollFinalValue) {
       return;
     }
+
     const percentage =
       (window.scrollY - scrollInitialValue) /
       (scrollFinalValue - scrollInitialValue);
+
     selectedEl.style.setProperty(
       propertySelected,
-      (propertyFinalValue - propertyInitialValue) * percentage +
-        propertyInitialValue
+      getPropertyValue(
+        (propertyFinalValue - propertyInitialValue) * percentage +
+          propertyInitialValue
+      )
     );
   }
 });
