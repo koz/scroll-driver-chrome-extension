@@ -29,6 +29,12 @@
       <label class="label">Timing: </label>
       <input id="timing-input" class="input-text control-input" type="text" value="ease"></input>
     </div>
+    <button id="export-button" class="export-button">Export JSON</button>
+  </div>
+  <div id="json-output" class="json-output-container">
+    <button id="json-output-close" class="json-output-close">x</button>
+    <textarea readonly id="json-output-text" class="json-output-text"></textarea>
+    <p class="json-disclaimer">Click to copy to clipboard</p>
   </div>
   <div class="scroller">
     <div id="scroll-bar-tooltip" class="scroll-bar-tooltip tooltip-hover"></div>
@@ -41,19 +47,7 @@
       class="scroll-bar-tooltip tooltip-end tooltip-hide"
     ></div>
     <div id="scroll-bar" class="scroll-bar-container">
-      <div class="scroll-bar">
         <div id="ruler" class="ruler">
-          <!-- <div class="rule-section">
-            <div class="rule-mark rule-mark-small" style="left: 0"></div>
-            <div class="rule-mark rule-mark-small" style="left: 20px"></div>
-            <div class="rule-mark rule-mark-small" style="left: 40px"></div>
-            <div class="rule-mark rule-mark-small" style="left: 60px"></div>
-            <div class="rule-mark rule-mark-small" style="left: 80px"></div>
-            <div class="rule-mark rule-mark-big" style="left: 100px">
-              <span class="rule-mark-label">100</span>
-            </div>
-          </div> -->
-        </div>
       </div>
     </div>
   </div>

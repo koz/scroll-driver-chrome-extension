@@ -3,6 +3,9 @@ const tooltipElement = document.getElementById("scroll-bar-tooltip");
 const markerStartElement = document.getElementById("scroll-bar-tooltip-start");
 const markerEndElement = document.getElementById("scroll-bar-tooltip-end");
 const selectEl = document.getElementById("property-select");
+const jsonButtonEl = document.getElementById("export-button");
+const jsonOutputEl = document.getElementById("json-output");
+const jsonOutputTextEl = document.getElementById("json-output-text");
 
 markers = [];
 const propertiesAvailable = [
@@ -150,4 +153,50 @@ scrollBarElement.addEventListener("mousemove", e => {
 // Remove hover marker on scrollbar mouse leave
 scrollBarElement.addEventListener("mouseleave", e => {
   tooltipElement.classList.add("tooltip-hide");
+});
+
+// Create json and export on button click
+jsonButtonEl.addEventListener("click", () => {
+  const unit = document.getElementById("unit-select").value;
+  const startValue = document.getElementById("property-initial-value-input")
+    .value;
+  const endValue = document.getElementById("property-final-value-input").value;
+  let querySelector = "";
+  if (selectedEl) {
+    if (selectedEl.id) {
+      querySelector += `#${selectedEl.id}`;
+    }
+
+    selectedEl.classList.forEach(item => {
+      querySelector += `.${item}`;
+    });
+  }
+  const obj = {
+    start: Number(markerStartElement.innerText),
+    end: Number(markerEndElement.innerText),
+    element: querySelector,
+    properties: [
+      {
+        startValue: unit ? `${startValue}${unit}` : startValue,
+        endValue: unit ? `${endValue}${unit}` : endValue,
+        property: document.getElementById("property-select").value,
+        duration: Number(document.getElementById("duration-input").value),
+        timing: document.getElementById("timing-input").value
+      }
+    ]
+  };
+  const jsonString = JSON.stringify(obj);
+  jsonOutputEl.classList.add("json-show");
+  jsonOutputTextEl.value = jsonString;
+});
+
+// Hide json on close section click
+document.getElementById("json-output-close").addEventListener("click", () => {
+  jsonOutputEl.classList.remove("json-show");
+});
+
+// Copy json code on textarea click
+jsonOutputTextEl.addEventListener("click", () => {
+  jsonOutputTextEl.select();
+  document.execCommand("copy");
 });
