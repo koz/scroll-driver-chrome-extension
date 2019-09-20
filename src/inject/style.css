@@ -99,15 +99,15 @@
   background-color: #242240;
 }
 
-.sd-tooltip-hover {
+.sd-tooltip-start {
   cursor: pointer;
   background-color: #64c7ff;
   color: #1d1d1d;
 }
-.sd-tooltip-hover::before {
+.sd-tooltip-start::before {
   border-top: 8px solid #64c7ff;
 }
-.sd-tooltip-hover::after {
+.sd-tooltip-start::after {
   background-color: #64c7ff;
 }
 
