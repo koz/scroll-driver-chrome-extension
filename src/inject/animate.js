@@ -29,12 +29,12 @@ window.animate = () => {
     }
     const durationInputEl = document.getElementById("duration-input");
     const timingInputEl = document.getElementById("timing-input");
-    selectedEl.style.setProperty(
-      "transition",
-      `${getSelectedProperty()} ${durationInputEl.value}ms ${
-        timingInputEl.value
-      }`
-    );
+    // selectedEl.style.setProperty(
+    //   "transition",
+    //   `${getSelectedProperty()} ${durationInputEl.value}ms ${
+    //     timingInputEl.value
+    //   }`
+    // );
   };
 
   const setListeners = () => {
@@ -112,6 +112,8 @@ window.animate = () => {
       }
     });
   };
+
+  setListeners();
 };
 
 window.animate();
