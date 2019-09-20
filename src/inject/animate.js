@@ -6,11 +6,13 @@ let selectedEl;
 
 const transformProperties = ["translateX", "translateY"];
 
+// Get correct property for cases of `transform`
 const getSelectedProperty = () => {
   const property = document.getElementById("property-select").value;
   return transformProperties.includes(property) ? `transform` : property;
 };
 
+// Add unit to property value
 const getPropertyValue = value => {
   const property = document.getElementById("property-select").value;
   const unit = document.getElementById("unit-select").value;
@@ -19,6 +21,7 @@ const getPropertyValue = value => {
     : value;
 };
 
+// Update element style with selected options
 const updatePropertyValue = () => {
   if (!selectedEl) {
     return;
@@ -31,6 +34,7 @@ const updatePropertyValue = () => {
   );
 };
 
+// Add listener to update transition property every time a control input is changed
 controlElements.forEach(item =>
   item.addEventListener("input", () => updatePropertyValue())
 );
@@ -57,6 +61,7 @@ allElements.forEach(item => {
   });
 });
 
+// Animate element based on scroll points
 document.addEventListener("scroll", event => {
   if (!selectedEl) {
     return;

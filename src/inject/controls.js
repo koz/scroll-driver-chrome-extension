@@ -98,6 +98,7 @@ Array(30)
     document.getElementById("ruler").appendChild(ruleSectionEl);
   });
 
+// Helper to add marker
 const setMarker = ({ index, mousePosition, element }) => {
   markers[index] = mousePosition + scrollBarElement.scrollLeft;
   element.style.setProperty("left", `${mousePosition}px`);
@@ -105,6 +106,7 @@ const setMarker = ({ index, mousePosition, element }) => {
   element.classList.remove("tooltip-hide");
 };
 
+// Set marker on scrollBar click
 scrollBarElement.addEventListener("click", e => {
   const index =
     markers.length < 2
@@ -120,27 +122,32 @@ scrollBarElement.addEventListener("click", e => {
   });
 });
 
+// Remove start marker on click
 markerStartElement.addEventListener("click", e => {
   markers[0] = null;
   markerStartElement.classList.add("tooltip-hide");
   markerStartElement.innerText = null;
 });
 
+// Remove end marker on click
 markerEndElement.addEventListener("click", e => {
   markers[1] = null;
   markerEndElement.classList.add("tooltip-hide");
   markerEndElement.innerText = null;
 });
 
+// Add hover marker on scrollbar mouse enter
+scrollBarElement.addEventListener("mouseenter", e => {
+  tooltipElement.classList.remove("tooltip-hide");
+});
+
+// Move hover marker on scrollbar mouse movement
 scrollBarElement.addEventListener("mousemove", e => {
   tooltipElement.style.setProperty("left", `${e.layerX}px`);
   tooltipElement.innerText = e.layerX + scrollBarElement.scrollLeft;
 });
 
+// Remove hover marker on scrollbar mouse leave
 scrollBarElement.addEventListener("mouseleave", e => {
   tooltipElement.classList.add("tooltip-hide");
-});
-
-scrollBarElement.addEventListener("mouseenter", e => {
-  tooltipElement.classList.remove("tooltip-hide");
 });
