@@ -12,6 +12,7 @@
     "scripts": ["src/bg/background.js"],
     "persistent": false
   },
+  "browser_action": {},
   "permissions": ["storage", "activeTab", "declarativeContent", "https://*/*"],
   "content_scripts": [
     {
@@ -23,6 +24,7 @@
     "src/inject/layout.html",
     "src/inject/style.css",
     "src/inject/animate.js",
-    "src/inject/controls.js"
+    "src/inject/controls.js",
+    "src/inject/cleanup.js"
   ]
 }

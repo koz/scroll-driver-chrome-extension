@@ -1,7 +1,20 @@
-chrome.extension.sendMessage({}, function(response) {
-  var readyStateCheckInterval = setInterval(function() {
+if (window.SDreadyStateCheckInterval) {
+  document
+    .getElementsByTagName("head")[0]
+    .append(
+      document
+        .createRange()
+        .createContextualFragment(
+          `<script id="sd-cleanup-script" src="${chrome.runtime.getURL(
+            "src/inject/cleanup.js"
+          )}" type="text/javascript" />`
+        )
+    );
+  window.SDreadyStateCheckInterval = null;
+} else {
+  window.SDreadyStateCheckInterval = setInterval(function() {
     if (document.readyState === "complete") {
-      clearInterval(readyStateCheckInterval);
+      clearInterval(window.SDreadyStateCheckInterval);
 
       // Inject styles
       document
@@ -10,7 +23,7 @@ chrome.extension.sendMessage({}, function(response) {
           document
             .createRange()
             .createContextualFragment(
-              `<link href="${chrome.extension.getURL(
+              `<link id="sd-style-link" href="${chrome.extension.getURL(
                 "src/inject/style.css"
               )}" rel="stylesheet">`
             )
@@ -32,7 +45,7 @@ chrome.extension.sendMessage({}, function(response) {
           document
             .createRange()
             .createContextualFragment(
-              `<script src="${chrome.runtime.getURL(
+              `<script id="sd-controls-script" src="${chrome.runtime.getURL(
                 "src/inject/controls.js"
               )}" type="text/javascript" />`
             )
@@ -43,11 +56,11 @@ chrome.extension.sendMessage({}, function(response) {
           document
             .createRange()
             .createContextualFragment(
-              `<script src="${chrome.runtime.getURL(
+              `<script id="sd-animate-script" src="${chrome.runtime.getURL(
                 "src/inject/animate.js"
               )}" type="text/javascript" />`
             )
         );
     }
   }, 10);
-});
+}
