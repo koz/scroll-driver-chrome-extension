@@ -1,11 +1,13 @@
 const scrollBarElement = document.getElementById("scroll-bar");
-const tooltipElement = document.getElementById("scroll-bar-tooltip");
-const markerStartElement = document.getElementById("scroll-bar-tooltip-start");
-const markerEndElement = document.getElementById("scroll-bar-tooltip-end");
+const tooltipElement = document.getElementById("sd-scroll-bar-tooltip");
+const markerStartElement = document.getElementById(
+  "sd-scroll-bar-tooltip-start"
+);
+const markerEndElement = document.getElementById("sd-scroll-bar-tooltip-end");
 const selectEl = document.getElementById("property-select");
 const jsonButtonEl = document.getElementById("export-button");
 const jsonOutputEl = document.getElementById("json-output");
-const jsonOutputTextEl = document.getElementById("json-output-text");
+const jsonOutputTextEl = document.getElementById("sd-json-output-text");
 
 markers = [];
 const propertiesAvailable = [
@@ -79,26 +81,26 @@ propertiesAvailable.forEach(item => {
 // Create ruler on HTML
 Array(30)
   .fill(null)
-  .forEach((_, sectionIndex) => {
+  .forEach((_, sectionIndex, array) => {
     const ruleSectionEl = document.createElement("div");
-    ruleSectionEl.classList.add("rule-section");
-    Array(6)
+    ruleSectionEl.classList.add("sd-rule-section");
+    Array(sectionIndex === array.length - 1 ? 5 : 6)
       .fill(null)
       .forEach((_, i) => {
         const el = document.createElement("div");
         if (i === 5) {
-          el.classList.add("rule-mark", "rule-mark-big");
+          el.classList.add("sd-rule-mark", "sd-rule-mark-big");
           const label = document.createElement("span");
-          label.classList.add("rule-mark-label");
+          label.classList.add("sd-rule-mark-label");
           label.innerText = 100 * sectionIndex + 100;
           el.appendChild(label);
         } else {
-          el.classList.add("rule-mark", "rule-mark-small");
+          el.classList.add("sd-rule-mark", "sd-rule-mark-small");
         }
         el.style.setProperty("left", `${20 * i + 100 * sectionIndex}px`);
         ruleSectionEl.appendChild(el);
       });
-    document.getElementById("ruler").appendChild(ruleSectionEl);
+    document.getElementById("sd-ruler").appendChild(ruleSectionEl);
   });
 
 // Helper to add marker
@@ -106,7 +108,7 @@ const setMarker = ({ index, mousePosition, element }) => {
   markers[index] = mousePosition + scrollBarElement.scrollLeft;
   element.style.setProperty("left", `${mousePosition}px`);
   element.innerText = markers[index];
-  element.classList.remove("tooltip-hide");
+  element.classList.remove("sd-tooltip-hide");
 };
 
 // Set marker on scrollBar click
@@ -128,20 +130,20 @@ scrollBarElement.addEventListener("click", e => {
 // Remove start marker on click
 markerStartElement.addEventListener("click", e => {
   markers[0] = null;
-  markerStartElement.classList.add("tooltip-hide");
+  markerStartElement.classList.add("sd-tooltip-hide");
   markerStartElement.innerText = null;
 });
 
 // Remove end marker on click
 markerEndElement.addEventListener("click", e => {
   markers[1] = null;
-  markerEndElement.classList.add("tooltip-hide");
+  markerEndElement.classList.add("sd-tooltip-hide");
   markerEndElement.innerText = null;
 });
 
 // Add hover marker on scrollbar mouse enter
 scrollBarElement.addEventListener("mouseenter", e => {
-  tooltipElement.classList.remove("tooltip-hide");
+  tooltipElement.classList.remove("sd-tooltip-hide");
 });
 
 // Move hover marker on scrollbar mouse movement
@@ -152,7 +154,7 @@ scrollBarElement.addEventListener("mousemove", e => {
 
 // Remove hover marker on scrollbar mouse leave
 scrollBarElement.addEventListener("mouseleave", e => {
-  tooltipElement.classList.add("tooltip-hide");
+  tooltipElement.classList.add("sd-tooltip-hide");
 });
 
 // Create json and export on button click
@@ -186,14 +188,16 @@ jsonButtonEl.addEventListener("click", () => {
     ]
   };
   const jsonString = JSON.stringify(obj);
-  jsonOutputEl.classList.add("json-show");
+  jsonOutputEl.classList.add("sd-json-show");
   jsonOutputTextEl.value = jsonString;
 });
 
 // Hide json on close section click
-document.getElementById("json-output-close").addEventListener("click", () => {
-  jsonOutputEl.classList.remove("json-show");
-});
+document
+  .getElementById("sd-json-output-close")
+  .addEventListener("click", () => {
+    jsonOutputEl.classList.remove("sd-json-show");
+  });
 
 // Copy json code on textarea click
 jsonOutputTextEl.addEventListener("click", () => {

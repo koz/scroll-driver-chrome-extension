@@ -1,19 +1,19 @@
-<div class="bottom-bar">
-  <div id="controls" class="controls">
-    <div class="input">
-      <label class="label">Property: </label>
+<div class="sd-bottom-bar">
+  <div id="controls" class="sd-controls">
+    <div class="sd-input">
+      <label class="sd-label">Property: </label>
       <select id="property-select" class="control-input"></select>
     </div>
-    <div class="input">
-      <label class="label">Initial value: </label>
-      <input id="property-initial-value-input" class="input-text control-input" type="text"></input>
+    <div class="sd-input">
+      <label class="sd-label">Initial value: </label>
+      <input id="property-initial-value-input" class="sd-input-text control-input" type="text"></input>
     </div>
-    <div class="input">
-      <label class="label">Final value: </label>
-      <input id="property-final-value-input" class="input-text control-input" type="text"></input>
+    <div class="sd-input">
+      <label class="sd-label">Final value: </label>
+      <input id="property-final-value-input" class="sd-input-text control-input" type="text"></input>
     </div>
-    <div class="input">
-        <label class="label">Unit: </label>
+    <div class="sd-input">
+        <label class="sd-label">Unit: </label>
         <select id="unit-select" class="control-input">
           <option>None</option>
           <option value="%">Percentage</option>
@@ -21,33 +21,33 @@
           <option value="rem">Rem</option>
         </select>
     </div>
-    <div class="input">
-      <label class="label">Duration (ms): </label>
-      <input id="duration-input" class="input-text control-input" type="text" value="300"></input>
+    <div class="sd-input">
+      <label class="sd-label">Duration (ms): </label>
+      <input id="duration-input" class="sd-input-text control-input" type="text" value="300"></input>
     </div>
-    <div class="input">
-      <label class="label">Timing: </label>
-      <input id="timing-input" class="input-text control-input" type="text" value="ease"></input>
+    <div class="sd-input">
+      <label class="sd-label">Timing: </label>
+      <input id="timing-input" class="sd-input-text control-input" type="text" value="ease"></input>
     </div>
     <button id="export-button" class="export-button">Export JSON</button>
   </div>
-  <div id="json-output" class="json-output-container">
-    <button id="json-output-close" class="json-output-close">x</button>
-    <textarea readonly id="json-output-text" class="json-output-text"></textarea>
-    <p class="json-disclaimer">Click to copy to clipboard</p>
+  <div id="json-output" class="sd-json-output-container">
+    <button id="sd-json-output-close" class="sd-json-output-close">x</button>
+    <textarea readonly id="sd-json-output-text" class="sd-json-output-text"></textarea>
+    <p class="sd-json-disclaimer">Click to copy to clipboard</p>
   </div>
-  <div class="scroller">
-    <div id="scroll-bar-tooltip" class="scroll-bar-tooltip tooltip-hover"></div>
+  <div class="sd-scroller">
+    <div id="sd-scroll-bar-tooltip" class="sd-scroll-bar-tooltip sd-tooltip-hover"></div>
     <div
-      id="scroll-bar-tooltip-start"
-      class="scroll-bar-tooltip tooltip-start tooltip-hide"
+      id="sd-scroll-bar-tooltip-start"
+      class="sd-scroll-bar-tooltip tooltip-start sd-tooltip-hide"
     ></div>
     <div
-      id="scroll-bar-tooltip-end"
-      class="scroll-bar-tooltip tooltip-end tooltip-hide"
+      id="sd-scroll-bar-tooltip-end"
+      class="sd-scroll-bar-tooltip sd-tooltip-end sd-tooltip-hide"
     ></div>
-    <div id="scroll-bar" class="scroll-bar-container">
-        <div id="ruler" class="ruler">
+    <div id="scroll-bar" class="sd-scroll-bar-container">
+        <div id="sd-ruler" class="sd-ruler">
       </div>
     </div>
   </div>

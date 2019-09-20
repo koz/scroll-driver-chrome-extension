@@ -74,10 +74,10 @@ document.addEventListener("scroll", event => {
     document.getElementById("property-final-value-input").value
   );
   const scrollInitialValue = Number(
-    document.getElementById("scroll-bar-tooltip-start").innerText
+    document.getElementById("sd-scroll-bar-tooltip-start").innerText
   );
   const scrollFinalValue = Number(
-    document.getElementById("scroll-bar-tooltip-end").innerText
+    document.getElementById("sd-scroll-bar-tooltip-end").innerText
   );
   if (window.scrollY < scrollInitialValue) {
     selectedEl.style.setProperty(

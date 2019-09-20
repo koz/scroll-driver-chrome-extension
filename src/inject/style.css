@@ -3,17 +3,19 @@
 }
 
 /* LAYOUT STYLE */
-.bottom-bar {
+.sd-bottom-bar {
   position: fixed;
   display: flex;
   bottom: 0;
   width: 100vw;
   font-family: "Helvetica";
+  color: #1d1d1d;
   background-color: #f2f8fd;
   left: 0;
+  z-index: 99999;
 }
 
-.controls {
+.sd-controls {
   padding: 20px;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 12px;
@@ -23,39 +25,40 @@
   z-index: 3;
 }
 
-.input {
+.sd-input {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.input:not(:first-child),
+.sd-input:not(:first-child),
 .export-button {
   margin-top: 8px;
 }
 
-.input-text {
+.sd-label {
+  margin-right: 8px;
+  font-weight: 400;
+}
+
+.sd-input-text {
   border: none;
   border-radius: 3px;
   width: 50%;
 }
 
-.input > label {
-  margin-right: 8px;
-}
-
-.scroller {
+.sd-scroller {
   position: relative;
   overflow-x: scroll;
   overflow-y: hidden;
 }
 
-.scroll-bar-container {
+.sd-scroll-bar-container {
   overflow-x: scroll;
   height: 100%;
 }
 
-.scroll-bar-tooltip {
+.sd-scroll-bar-tooltip {
   position: absolute;
   padding: 3px;
   z-index: 10;
@@ -64,7 +67,7 @@
   border-radius: 5px;
   margin-left: -12px;
 }
-.scroll-bar-tooltip::before {
+.sd-scroll-bar-tooltip::before {
   content: "";
   width: 0;
   height: 0;
@@ -74,44 +77,7 @@
   border-right: 8px solid transparent;
   left: calc(50% - 8px);
 }
-
-.tooltip-hover {
-  pointer-events: none;
-  background-color: #242240;
-  color: white;
-}
-.tooltip-hover::before {
-  border-top: 8px solid #242240;
-}
-.tooltip-hover::after {
-  background-color: #242240;
-}
-
-.tooltip-start {
-  cursor: pointer;
-  background-color: #64c7ff;
-  color: #1d1d1d;
-}
-.tooltip-start::before {
-  border-top: 8px solid #64c7ff;
-}
-.tooltip-start::after {
-  background-color: #64c7ff;
-}
-
-.tooltip-end {
-  cursor: pointer;
-  background-color: #7ab1ff;
-  color: #1d1d1d;
-}
-.tooltip-end::before {
-  border-top: 8px solid #7ab1ff;
-}
-.tooltip-end::after {
-  background-color: #7ab1ff;
-}
-
-.scroll-bar-tooltip::after {
+.sd-scroll-bar-tooltip::after {
   content: "";
   width: 1px;
   position: absolute;
@@ -121,17 +87,53 @@
   height: 200px;
 }
 
-.tooltip-hide {
+.sd-tooltip-hover {
+  pointer-events: none;
+  background-color: #242240;
+  color: white;
+}
+.sd-tooltip-hover::before {
+  border-top: 8px solid #242240;
+}
+.sd-tooltip-hover::after {
+  background-color: #242240;
+}
+
+.sd-tooltip-hover {
+  cursor: pointer;
+  background-color: #64c7ff;
+  color: #1d1d1d;
+}
+.sd-tooltip-hover::before {
+  border-top: 8px solid #64c7ff;
+}
+.sd-tooltip-hover::after {
+  background-color: #64c7ff;
+}
+
+.sd-tooltip-end {
+  cursor: pointer;
+  background-color: #7ab1ff;
+  color: #1d1d1d;
+}
+.sd-tooltip-end::before {
+  border-top: 8px solid #7ab1ff;
+}
+.sd-tooltip-end::after {
+  background-color: #7ab1ff;
+}
+
+.sd-tooltip-hide {
   display: none;
 }
 
-.rule-section {
+.sd-rule-section {
   width: 100px;
   height: 100%;
   background-color: #d7e1e9;
 }
 
-.rule-mark {
+.sd-rule-mark {
   width: 1px;
   background-color: black;
   position: absolute;
@@ -139,28 +141,28 @@
   pointer-events: none;
 }
 
-.rule-mark-small {
+.sd-rule-mark-small {
   height: 5px;
 }
 
-.rule-mark-big {
+.sd-rule-mark-big {
   height: 15px;
 }
 
-.rule-mark-label {
+.sd-rule-mark-label {
   margin-left: 4px;
   color: #1d1d1d;
   font-size: 8px;
   pointer-events: none;
 }
 
-.ruler {
+.sd-ruler {
   height: 20px;
   position: relative;
   display: inline-flex;
 }
 
-.json-output-container {
+.sd-json-output-container {
   padding: 30px 20px 20px;
   display: flex;
   flex-direction: column;
@@ -173,26 +175,28 @@
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   top: 0;
   left: 0;
-  height: calc(100% - 40px);
-  transition: transform 300ms ease-out;
+  height: 100%;
+  opacity: 0;
+  transition: all 300ms ease-out;
   z-index: 2;
   background-color: #f2f8fd;
 }
 
-.json-show {
+.sd-json-show {
+  opacity: 1;
   transform: translate(100%);
 }
 
-.json-output-text {
+.sd-json-output-text {
   resize: none;
   height: 80%;
 }
 
-.json-disclaimer {
+.sd-json-disclaimer {
   margin: 0;
 }
 
-.json-output-close {
+.sd-json-output-close {
   background: none;
   border: none;
   padding: 8px;
